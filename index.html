@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AI Qadam</title>
+<style>
+@font-face{font-family:Geist;font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/Geist-600-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}
+@font-face{font-family:Geist;font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/Geist-600-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Geist;font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/Geist-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Geist;font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/Geist-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Geist;font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/Geist-700-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}
+@font-face{font-family:Geist;font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/Geist-700-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Geist;font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/Geist-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Geist;font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/Geist-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/Inter-400-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/Inter-400-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/Inter-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/Inter-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/Inter-600-cyrillic-ext.woff2) format('woff2');unicode-range:U+0460-052F,U+1C80-1C8A,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/Inter-600-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/Inter-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF}
+@font-face{font-family:Inter;font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/Inter-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/JetBrainsMono-400-cyrillic.woff2) format('woff2');unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116}
+@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/JetBrainsMono-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD}
+:root{
+  --bg:#0A0A0A; --fg:#FAFAFA; --card:#171717; --border:#262626;
+  --dim:#A1A1A1; --primary:#39B3AF;
+  --font-d:Geist,system-ui,-apple-system,sans-serif;
+  --font-s:Inter,system-ui,-apple-system,sans-serif;
+  --font-m:'JetBrains Mono',ui-monospace,Menlo,monospace;
+  --spring:cubic-bezier(.2,.9,.25,1.12); --out:cubic-bezier(.2,.7,.2,1);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:#000;color:var(--fg);font-family:var(--font-s);-webkit-font-smoothing:antialiased;display:flex;align-items:center;justify-content:center;min-height:100dvh}
+/* vertical player: 9:16 like the V compositions (1080x1920) */
+.player{position:relative;width:min(100vw,calc(100dvh*9/16));height:min(100dvh,calc(100vw*16/9));aspect-ratio:9/16;container-type:inline-size;overflow:hidden;background:var(--bg);user-select:none;-webkit-user-select:none;touch-action:pan-y}
+.scene{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .35s ease;overflow:hidden}
+.scene.on{opacity:1;visibility:visible;z-index:2}
+.paused .scene *{animation-play-state:paused!important}
+.segs{position:absolute;top:0;left:0;right:0;z-index:20;display:flex;gap:4px;padding:8px 8px 0}
+.seg{flex:1;height:20px;background:none;border:0;padding:8px 0;cursor:pointer}
+.seg i{display:block;height:3px;border-radius:2px;background:rgba(255,255,255,.28);position:relative;overflow:hidden}
+.seg i::after{content:"";position:absolute;inset:0;background:#fff;transform-origin:left;transform:scaleX(var(--f,0))}
+.seg.done i::after{transform:scaleX(1)}
+.tap{position:absolute;top:0;bottom:0;z-index:10;background:none;border:0;width:30%;cursor:pointer}
+.tap.l{left:0}.tap.r{right:0;width:70%}
+a{color:inherit}
+/* EnLine: headline + muted sub, one line (verticals are English-only) */
+.en .t{font-family:var(--font-d);font-weight:600;line-height:1.14;letter-spacing:-.015em}
+.en .s{font-family:var(--font-s);font-weight:400;line-height:1.3;color:var(--dim);margin-top:.8cqi}
+.kick{position:absolute;left:5.2cqi;font-family:var(--font-s);font-size:2.96cqi;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--primary);z-index:3}
+.pchip{position:absolute;right:5.2cqi;display:flex;align-items:center;gap:1.5cqi;border:1px solid var(--border);background:rgba(10,10,10,.55);border-radius:1.1cqi;padding:1.4cqi 2.2cqi;font-family:var(--font-s);font-size:2.6cqi;font-weight:600;z-index:3}
+.pchip img{height:4.4cqi}
+.pchip.solid{background:#104860;border-color:#104860}
+.pchip.solid img{height:5cqi}
+/* phases */
+.ph{opacity:0;transform:translateY(2cqi);transition:opacity .45s var(--out),transform .45s var(--out)}
+.ph.vis{opacity:1;transform:none}
+.diagram{transition:opacity .4s ease}
+.diagram.off{opacity:0!important}
+.closing{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 7.4cqi;gap:3.4cqi;opacity:0;transform:translateY(2cqi);transition:opacity .45s var(--out),transform .45s var(--out)}
+.closing.vis{opacity:1;transform:none}
+.closing .cm{display:flex;flex-direction:column;align-items:center;gap:1.7cqi}
+.closing .cm img{height:10.7cqi}
+.closing .cm .wm{font-family:var(--font-d);font-weight:600;font-size:3.33cqi;letter-spacing:.08em}
+.closing .ct{font-family:var(--font-d);font-weight:600;font-size:4.81cqi;line-height:1.14;letter-spacing:-.015em}
+.closing .cs{font-family:var(--font-s);font-size:2.96cqi;color:var(--dim)}
+.closing .cteal{font-family:var(--font-d);font-weight:600;font-size:3.7cqi;color:var(--primary)}
+.closing a.clink{font-family:var(--font-s);font-size:2.96cqi;letter-spacing:.02em;text-decoration:none}
+.closing a.clink.dim{color:var(--dim)}
+.closing a.clink.teal{color:var(--primary)}
+.closing img.cchip{height:8.9cqi;border-radius:1.2cqi}
+/* ---- V0 tree (StreamsOrbitV / 10.8) ---- */
+.v0 .beat{position:absolute;left:6.7cqi;top:12cqi;width:86.6cqi}
+.v0 .beat .t{font-size:7.04cqi}
+.v0 .beat .s{font-size:2.96cqi}
+.vcore{position:absolute;left:30.56cqi;top:62cqi;width:38.9cqi;display:flex;flex-direction:column;align-items:center;gap:1.48cqi;opacity:0}
+.vcore img{height:10.37cqi;width:auto}
+.vcore .wm{font-family:var(--font-d);font-weight:600;font-size:2.96cqi;letter-spacing:.08em}
+.play .vcore{animation:markIn .9s var(--spring) .3s forwards}
+@keyframes markIn{from{opacity:0;transform:scale(.72)}to{opacity:1;transform:scale(1)}}
+.vcard{position:absolute;width:38.9cqi;height:12.6cqi;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:.74cqi;padding:0 2.78cqi;border-radius:1.11cqi;border:1px solid var(--border);background:rgba(23,23,23,.82);opacity:0}
+.vcard .row{display:flex;align-items:baseline;justify-content:space-between;gap:1.3cqi}
+.vcard .n{font-family:var(--font-d);font-size:4.07cqi;font-weight:600;color:var(--dim);white-space:nowrap}
+.vcard .s{font-family:var(--font-s);font-size:2.22cqi;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.38);white-space:nowrap}
+.vcard.live{border-color:var(--primary);background:rgba(57,179,175,.1)}
+.vcard.live .n{color:var(--fg)} .vcard.live .s{color:var(--primary)}
+.vc-tl{left:8.33cqi;top:86.3cqi}.vc-tr{left:52.78cqi;top:86.3cqi}
+.vc-bl{left:8.33cqi;top:104.8cqi}.vc-br{left:52.78cqi;top:104.8cqi}
+.play .vcard{animation:cardIn .7s var(--spring) forwards}
+.play .vc-tl{animation-delay:1.5s}.play .vc-tr{animation-delay:1.7s}
+.play .vc-bl{animation-delay:2s}.play .vc-br{animation-delay:2.2s}
+@keyframes cardIn{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+.vseg{position:absolute;opacity:0}
+.vseg.v{width:2px;background:repeating-linear-gradient(180deg,var(--sc) 0 8px,transparent 8px 16px)}
+.vseg.h{height:2px;background:repeating-linear-gradient(90deg,var(--sc) 0 8px,transparent 8px 16px)}
+.play .vseg{animation:fadeIn .4s var(--out) forwards;animation-delay:var(--dl,1s)}
+@keyframes fadeIn{to{opacity:1}}
+.v-trunk{left:50cqi;top:78.7cqi;height:4.63cqi;--sc:rgba(255,255,255,.28);--dl:.9s;transform:translateX(-1px)}
+.v-fork{left:27.78cqi;top:83.33cqi;width:44.44cqi;--sc:rgba(255,255,255,.28);--dl:1.1s}
+.v-d1l{left:27.78cqi;top:83.33cqi;height:2.96cqi;--sc:var(--primary);--dl:1.3s;transform:translateX(-1px)}
+.v-d1r{left:72.22cqi;top:83.33cqi;height:2.96cqi;--sc:rgba(255,255,255,.28);--dl:1.3s;transform:translateX(-1px)}
+.v-d2l{left:27.78cqi;top:98.9cqi;height:5.93cqi;--sc:rgba(255,255,255,.28);--dl:1.8s;transform:translateX(-1px)}
+.v-d2r{left:72.22cqi;top:98.9cqi;height:5.93cqi;--sc:rgba(255,255,255,.28);--dl:1.8s;transform:translateX(-1px)}
+.vpulse{position:absolute;width:12px;height:12px;border-radius:50%;background:var(--primary);box-shadow:0 0 18px var(--primary);opacity:0;left:27.78cqi;top:83.33cqi;transform:translate(-50%,0)}
+.play .vpulse{animation:vpulse 3s linear 3.4s infinite}
+@keyframes vpulse{0%{opacity:0;top:83.33cqi}12%{opacity:1}85%{opacity:1}100%{opacity:0;top:86.3cqi}}
+.vplate{position:absolute;left:6.67cqi;right:6.67cqi;top:136.1cqi;min-height:12cqi;box-sizing:border-box;display:flex;align-items:center;justify-content:space-between;gap:2cqi;padding:1.5cqi 3.33cqi;border-radius:1.48cqi;border:1px solid var(--primary);border-top:2px solid var(--primary);background:rgba(57,179,175,.16);box-shadow:0 -18px 46px rgba(57,179,175,.1);opacity:0;transform:translateY(5.5cqi)}
+.play .vplate{animation:plateIn .8s var(--spring) 2.5s forwards}
+@keyframes plateIn{to{opacity:1;transform:none}}
+.vplate b{font-family:var(--font-d);font-size:3.9cqi;font-weight:700}
+.vplate small{font-family:var(--font-s);font-size:2.04cqi;color:var(--dim)}
+.vplate .live{font-family:var(--font-s);font-size:2.04cqi;font-weight:600;letter-spacing:.1em;color:var(--primary)}
+.v0 .vglow{position:absolute;left:0;right:0;bottom:0;height:41.7cqi;background:linear-gradient(0deg,rgba(57,179,175,.14),transparent);opacity:0;pointer-events:none}
+.play .vglow{animation:fadeIn .8s var(--out) 2.6s forwards}
+/* ---- V1 ---- */
+.v1 img.bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.v1 .z{position:absolute;inset:0;animation:kb 26s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1)}to{transform:scale(1.09)}}
+.v1 .dim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.78) 0%,rgba(10,10,10,.12) 30%,rgba(10,10,10,.94) 100%)}
+.v1 .kick{top:4.5cqi}
+.v1 .meet{position:absolute;right:5.2cqi;top:4.2cqi;text-align:right;background:rgba(10,10,10,.55);border:1px solid var(--primary);border-radius:1.1cqi;padding:1.7cqi 2.4cqi;z-index:3}
+.v1 .meet b{display:block;font-family:var(--font-d);font-weight:600;font-size:2.96cqi}
+.v1 .meet span{font-family:var(--font-s);font-weight:600;font-size:2.96cqi;color:var(--primary)}
+.v1 .body{position:absolute;left:5.2cqi;right:5.2cqi;bottom:7cqi}
+.v1 .body .en .t{font-size:4.81cqi}
+.v1 .body .en .s{font-size:2.96cqi}
+.v1 .tags{margin-top:2.2cqi}
+.v1 .tag{display:inline-block;font-family:var(--font-m);font-size:2.6cqi;border:1px solid var(--border);border-radius:99cqi;padding:1cqi 2.2cqi;margin:0 1.2cqi 1.2cqi 0;background:rgba(10,10,10,.6)}
+.v1 .bars{margin-top:2.4cqi;display:flex;flex-direction:column;gap:1.8cqi}
+.v1 .brow .bl{display:flex;align-items:baseline;justify-content:space-between}
+.v1 .brow .bl span:first-child{font-family:var(--font-d);font-weight:600;font-size:3.3cqi}
+.v1 .brow .bl span:last-child{font-family:var(--font-d);font-weight:700;font-size:4.6cqi;color:var(--primary);font-variant-numeric:tabular-nums}
+.v1 .track{height:1.3cqi;min-height:8px;border-radius:99cqi;background:rgba(255,255,255,.14);overflow:hidden;margin-top:1cqi}
+.v1 .fill{height:100%;width:0;border-radius:99cqi;background:var(--primary);transition:width 1s var(--out)}
+.vis .fill{width:var(--w)}
+.v1 .stats{display:flex;gap:8cqi}
+.v1 .stat b{display:block;font-family:var(--font-d);font-weight:700;font-size:5.5cqi;color:var(--fg);line-height:1}
+.v1 .stat b.teal{color:var(--primary)}
+.v1 .stat span{font-family:var(--font-s);font-size:2.7cqi;color:var(--dim)}
+/* ---- V2/V3 beats ---- */
+.beats{position:absolute;left:5.2cqi;right:5.2cqi;bottom:5.3cqi}
+.beats .en .t{font-size:4.81cqi}
+.beats .en .s{font-size:2.96cqi}
+.beats .tags{margin-top:1.9cqi}
+.beats .tag{display:inline-block;font-family:var(--font-m);font-size:2.6cqi;border:1px solid var(--border);border-radius:99cqi;padding:1cqi 2.2cqi;margin:0 1.2cqi 1.2cqi 0}
+.beats .stats{display:flex;gap:6cqi}
+.beats .stat b{display:block;font-family:var(--font-d);font-weight:700;font-size:5.5cqi;line-height:1}
+.beats .stat span{font-family:var(--font-s);font-size:2.7cqi;color:var(--dim)}
+.wmock{position:absolute;left:5.2cqi;right:5.2cqi;top:16cqi;border:1px solid var(--border);border-radius:1.5cqi;background:#101010;overflow:hidden}
+.wmock .wb{display:flex;gap:1cqi;padding:1.6cqi 2cqi;border-bottom:1px solid var(--border)}
+.wmock .wb i{width:1.1cqi;height:1.1cqi;min-width:8px;min-height:8px;border-radius:50%;background:#333}
+.wmock .wb i:first-child{background:var(--primary)}
+.wmock .wl{font-family:var(--font-m);font-size:2.9cqi;line-height:2;padding:2cqi 2.4cqi;color:var(--dim)}
+.wmock .wl b{color:var(--fg);font-weight:400}
+.wmock .wl .ok{color:#00D391}.wmock .wl .tl{color:var(--primary)}
+.vgrad{position:absolute;inset:0;pointer-events:none;background:linear-gradient(to bottom,#0A0A0A 0%,rgba(10,10,10,.95) 10%,rgba(10,10,10,.4) 17%,rgba(10,10,10,0) 26%),linear-gradient(to top,#0A0A0A 0%,rgba(10,10,10,.97) 24%,rgba(10,10,10,.74) 34%,rgba(10,10,10,0) 46%)}
+/* ---- V4 ---- */
+.v4 .phone{position:absolute;left:50%;top:13cqi;transform:translateX(-50%);width:46cqi;border:1px solid var(--border);border-radius:3cqi;overflow:hidden;background:#000}
+.v4 .phone img{display:block;width:100%;height:62cqi;object-fit:cover;object-position:top}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01s!important;transition-duration:.01s!important}}
+</style>
+</head>
+<body>
+<div class="player" id="player">
+  <div class="segs" id="segs"></div>
+  <div class="scenes">
+    <!-- V0 What is AI Qadam -->
+    <div class="scene v0">
+      <div class="diagram" id="v0d">
+        <div class="beat ph" data-o="200" data-x="5000"><div class="en"><div class="t">The AI community infrastructure for Central Asia</div></div></div>
+        <div class="beat ph" data-o="5000" data-x="8700"><div class="en"><div class="t">Honesty over hype. Practice over theory.</div></div></div>
+        <div class="vglow"></div>
+        <div class="vseg v v-trunk"></div><div class="vseg h v-fork"></div>
+        <div class="vseg v v-d1l"></div><div class="vseg v v-d1r"></div>
+        <div class="vseg v v-d2l"></div><div class="vseg v v-d2r"></div>
+        <div class="vpulse"></div>
+        <div class="vcard live vc-tl"><div class="row"><span class="n">Events</span><span class="s">Live</span></div></div>
+        <div class="vcard vc-tr"><div class="row"><span class="n">Education</span><span class="s">Soon</span></div></div>
+        <div class="vcard vc-bl"><div class="row"><span class="n">People</span><span class="s">Soon</span></div></div>
+        <div class="vcard vc-br"><div class="row"><span class="n">Accelerator</span><span class="s">Soon</span></div></div>
+        <div class="vcore"><img src="assets/logo-mark.svg" alt=""/><div class="wm">AI QADAM</div></div>
+        <div class="vplate"><div><b>Build</b> <small>· open source</small><br/><small>Not a stream — the foundation the streams stand on</small></div><span class="live">LIVE</span></div>
+      </div>
+      <div class="closing" id="v0c">
+        <div class="cm"><img src="assets/logo-mark.svg" alt=""/><div class="wm">AI QADAM</div></div>
+        <div class="en"><div class="t">It's not about artificial intelligence.</div><div class="s" style="font-size:4.81cqi;color:var(--fg)">It's about people.</div></div>
+        <div class="cteal">Qadam means a step forward.</div>
+        <a class="clink dim" href="https://t.me/ai_qadam_community">t.me/ai_qadam_community</a>
+      </div>
+    </div>
+    <!-- V1 AI Qadam Events -->
+    <div class="scene v1">
+      <div class="diagram" id="v1d">
+        <div class="z"><img class="bg" id="v1a" src="assets/photo-group.jpg" style="object-position:46% 50%" alt=""/><img class="bg" id="v1b" src="assets/photo-speaker.jpg" style="opacity:0" alt=""/></div>
+        <div class="dim"></div>
+        <div class="kick">AI Qadam · Events</div>
+        <div class="meet ph" data-o="400" data-x="9000"><b>Next meetup</b><span>Oct 17</span></div>
+        <div class="body">
+          <div class="ph" data-o="300" data-x="3500"><div class="en"><div class="t">100+ people in the room. Every time.</div><div class="s">Practitioners on stage, not vendors.</div></div>
+            <div class="tags"><span class="tag">Meetup</span><span class="tag">Fail Stories Night</span></div>
+          </div>
+          <div class="bars ph" data-o="3500" data-x="6500">
+            <div class="brow"><div class="bl"><span>Leaders &amp; C-level</span><span><span class="cnt" data-v="35">0</span>%</span></div><div class="track"><div class="fill" style="--w:35%"></div></div></div>
+            <div class="brow"><div class="bl"><span>Experienced engineers</span><span><span class="cnt" data-v="28">0</span>%</span></div><div class="track"><div class="fill" style="--w:28%"></div></div></div>
+            <div class="brow"><div class="bl"><span>Core regulars — come back</span><span><span class="cnt" data-v="18">0</span>%</span></div><div class="track"><div class="fill" style="--w:18%"></div></div></div>
+          </div>
+          <div class="stats ph" data-o="6500" data-x="9000">
+            <div class="stat"><b class="teal">NPS +78</b><span>attendee score · 0 detractors</span></div>
+            <div class="stat"><b>80+</b><span>companies · IT, banks, telecom</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="closing" id="v1c">
+        <div class="cm"><img src="assets/logo-mark.svg" alt=""/><div class="wm">AI QADAM</div></div>
+        <div class="en"><div class="t" style="color:var(--primary)">Next meetup — Oct 17</div></div>
+        <div class="en"><div class="t" style="font-size:3.7cqi">One meetup at a time.</div></div>
+        <a class="clink dim" href="https://t.me/ai_qadam_community">t.me/ai_qadam_community</a>
+      </div>
+    </div>
+    <!-- V2 AI Qadam Build -->
+    <div class="scene v2">
+      <div class="diagram" id="v2d">
+        <div class="wmock">
+          <div class="wb"><i></i><i></i><i></i></div>
+          <div class="wl">
+            <div><b>›</b> describe the process</div>
+            <div><span class="tl">⚙ build</span> <span class="ok">✓ flow assembles itself</span></div>
+            <div><span class="tl">⚙ check</span> <span class="ok">✓ instantly verified</span></div>
+            <div><span class="tl">⚙ approve</span> <span class="ok">✓ human confirms run</span></div>
+            <div><span class="tl">⚙ publish</span> <span class="ok">✓ becomes an MCP tool</span></div>
+          </div>
+        </div>
+        <div class="vgrad"></div>
+        <div class="kick">AI Qadam · Build</div>
+        <div class="pchip">Qadam Flow</div>
+        <div class="beats">
+          <div class="ph" data-o="300" data-x="2100"><div class="en"><div class="t">Open-source infrastructure</div><div class="s">The region owns it, the community runs it</div></div></div>
+          <div class="ph" data-o="2100" data-x="3900"><div class="en"><div class="t">Describe the process — the flow builds itself</div><div class="s">AI is a step in the flow, not a feature</div></div></div>
+          <div class="ph" data-o="3900" data-x="5400"><div class="en"><div class="t">The assembled flow is checked instantly</div></div></div>
+          <div class="ph" data-o="5400" data-x="7000"><div class="en"><div class="t">An external step never runs without a human</div><div class="s">Execution pauses and waits for approval</div></div></div>
+          <div class="ph" data-o="7000" data-x="8600"><div class="en"><div class="t">Every flow becomes an MCP tool</div></div><div class="tags"><span class="tag">Claude Desktop</span><span class="tag">Cursor</span><span class="tag">Windsurf</span></div></div>
+          <div class="ph" data-o="8600" data-x="9800"><div class="stats"><div class="stat"><b><span class="cnt" data-v="238">0</span></b><span>qadams · integrations</span></div><div class="stat"><b><span class="cnt" data-v="252">0</span></b><span>templates · ready to use</span></div></div></div>
+        </div>
+      </div>
+      <div class="closing" id="v2c">
+        <div class="cm"><img src="assets/logo-mark.svg" alt=""/><div class="wm">AI QADAM</div></div>
+        <div class="en"><div class="t">No paid tiers. No vendor lock-in.</div><div class="s">Fully open source — MIT licensed</div></div>
+        <a class="clink teal" href="https://flow.aiqadam.org">flow.aiqadam.org</a>
+      </div>
+    </div>
+    <!-- V3 ProData -->
+    <div class="scene v3">
+      <div class="diagram" id="v3d">
+        <div class="wmock">
+          <div class="wb"><i></i><i></i><i></i></div>
+          <div class="wl">
+            <div><b>$</b> prodata gpu list</div>
+            <div>H100 · H200 · A100 · <span class="ok">RTX PRO 6000</span></div>
+            <div>status: <span class="ok">ready</span> · SLA 99.99%</div>
+            <div>activation: <span class="tl">from 10 minutes</span></div>
+          </div>
+        </div>
+        <div class="vgrad"></div>
+        <div class="kick">Infrastructure Partner</div>
+        <div class="pchip solid"><img src="assets/prodata-logo.png" alt="ProData"/></div>
+        <div class="beats">
+          <div class="ph" data-o="300" data-x="2300"><div class="en"><div class="t">Cloud and AI infrastructure</div><div class="s">Uzbekistan and Kazakhstan</div></div></div>
+          <div class="ph" data-o="2300" data-x="4300"><div class="en"><div class="t">The model runs on your server</div><div class="s">Qadam Flow connects to your endpoint</div></div></div>
+          <div class="ph" data-o="4300" data-x="6000"><div class="en"><div class="t">Activation — from 10 minutes</div><div class="s">For AI inference, ML, and rendering</div></div></div>
+          <div class="ph" data-o="6000" data-x="7800"><div class="stats"><div class="stat"><b>7</b><span>Tier III data centers</span></div><div class="stat"><b>99.99%</b><span>SLA · up to</span></div></div>
+            <div class="tags"><span class="tag">Managed Kubernetes</span><span class="tag">S3</span><span class="tag">Up to 10 Gbit/s</span><span class="tag">ISO 27001</span><span class="tag">PCI DSS</span></div>
+            <div class="en"><div class="s" style="color:var(--primary)">pro-data.tech</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="closing" id="v3c">
+        <div class="cm"><img class="cchip" src="assets/prodata-logo.png" alt="ProData"/></div>
+        <div class="en"><div class="t">GPU infrastructure for AI</div><div class="s">H100 · H200 · A100 · RTX PRO 6000</div></div>
+        <a class="clink teal" href="https://pro-data.tech">pro-data.tech</a>
+      </div>
+    </div>
+    <!-- V4 Beelab -->
+    <div class="scene v4">
+      <div class="diagram" id="v4d">
+        <div class="phone"><img src="assets/beepul-home-dark.png" alt="Beepul app"/></div>
+        <div class="vgrad"></div>
+        <div class="kick">Technology Partner</div>
+        <div class="pchip"><img src="assets/beelab-logo.svg" alt="BeeLab"/></div>
+        <div class="beats">
+          <div class="ph" data-o="300" data-x="2500"><div class="en"><div class="t">Uzbekistan's fintech platform</div></div><div class="stats" style="margin-top:1.9cqi"><div class="stat"><b><span class="cnt" data-v="6.5" data-dec="1" data-suf="M+">0</span></b><span>registered users</span></div></div></div>
+          <div class="ph" data-o="2500" data-x="4500"><div class="en"><div class="t">Payments, transfers, QR &amp; NFC</div><div class="s">Beepul — top 4 among payment apps</div></div></div>
+          <div class="ph" data-o="4500" data-x="6200"><div class="stats"><div class="stat"><b><span class="cnt" data-v="1500" data-comma="1">0</span>+</b><span>services &amp; payment rails</span></div></div></div>
+          <div class="ph" data-o="6200" data-x="7800"><div class="stats"><div class="stat"><b><span class="cnt" data-v="200000" data-comma="1">0</span></b><span>payment points nationwide</span></div></div></div>
+        </div>
+      </div>
+      <div class="closing" id="v4c">
+        <div class="cm"><img class="cchip" style="height:6.7cqi" src="assets/beepul-logo-with-text.svg" alt="Beepul"/></div>
+        <div class="en"><div class="t">6.5M+ users. 200,000+ payment points.</div></div>
+        <a class="clink teal" href="https://beepul.uz">beepul.uz</a>
+      </div>
+    </div>
+  </div>
+  <button class="tap l" aria-label="Back"></button>
+  <button class="tap r" aria-label="Next"></button>
+</div>
+
+<script>
+const DUR=[12000,12000,12000,10000,10000];
+const CLOSE_AT=[8700,9000,9800,7800,7800];
+const scenes=[...document.querySelectorAll('.scene')];
+const segsBox=document.getElementById('segs');
+const segFills=scenes.map((_,i)=>{
+  const b=document.createElement('button');b.className='seg';b.setAttribute('aria-label','Scene '+(i+1));
+  b.innerHTML='<i></i>';b.addEventListener('click',e=>{e.stopPropagation();show(i);});
+  segsBox.appendChild(b);return b.firstChild;
+});
+const player=document.getElementById('player');
+let idx=0,elapsed=0,lastTs=0,playing=true,holdTimer=null,held=false,timers=[];
+const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function runCnt(root){
+  root.querySelectorAll('.cnt').forEach(el=>{
+    const v=parseFloat(el.dataset.v),dec=+(el.dataset.dec||0),comma=el.dataset.comma==='1',suf=el.dataset.suf||'',t0=performance.now();
+    (function f(t){
+      const p=Math.min(1,(t-t0)/1100),e=1-Math.pow(1-p,3),vv=v*e;
+      el.textContent=(dec>0?vv.toFixed(dec):Math.round(vv).toString().replace(/\B(?=(\d{3})+(?!\d))/g,comma?',':''))+suf;
+      if(p<1)requestAnimationFrame(f);
+    })(t0);
+  });
+}
+function fire(scene){
+  scene.querySelectorAll('.ph').forEach(el=>{
+    const o=+el.dataset.o,x=+el.dataset.x;
+    timers.push(setTimeout(()=>{el.classList.add('vis');
+      if(el.querySelector('.cnt'))runCnt(el);
+    },o));
+    timers.push(setTimeout(()=>el.classList.remove('vis'),x));
+  });
+  const d=scene.querySelector('.diagram'),c=scene.querySelector('.closing');
+  const ca=CLOSE_AT[scenes.indexOf(scene)];
+  if(d){timers.push(setTimeout(()=>d.classList.add('off'),ca));}
+  if(c){timers.push(setTimeout(()=>c.classList.add('vis'),ca+40));}
+}
+function show(n){
+  timers.forEach(clearTimeout);timers=[];
+  idx=(n+scenes.length)%scenes.length;
+  document.querySelectorAll('.ph.vis').forEach(el=>el.classList.remove('vis'));
+  document.querySelectorAll('.closing.vis').forEach(el=>el.classList.remove('vis'));
+  document.querySelectorAll('.diagram.off').forEach(el=>el.classList.remove('off'));
+  scenes.forEach((s,i)=>{
+    const on=i===idx;
+    s.classList.remove('on','play');
+    segFills[i].parentElement.classList.toggle('done',i<idx);
+    if(on){void s.offsetWidth;s.classList.add('on','play');}
+  });
+  // V1 photo swap
+  if(idx===1){
+    const a=document.getElementById('v1a'),b=document.getElementById('v1b');
+    a.style.transition='none';b.style.transition='none';a.style.opacity=1;b.style.opacity=0;
+    timers.push(setTimeout(()=>{a.style.transition='opacity .5s ease';b.style.transition='opacity .5s ease';a.style.opacity=0;b.style.opacity=1;},3200));
+  }
+  elapsed=0;fire(scenes[idx]);
+}
+function loop(ts){
+  requestAnimationFrame(loop);
+  if(!playing||reduced){segFills[idx].style.setProperty('--f',reduced?1:elapsed/DUR[idx]);return;}
+  if(!lastTs)lastTs=ts;
+  elapsed+=ts-lastTs;lastTs=ts;
+  if(elapsed>=DUR[idx]){show(idx+1);return;}
+  segFills[idx].style.setProperty('--f',elapsed/DUR[idx]);
+}
+function setPaused(p){playing=!p;player.classList.toggle('paused',p);lastTs=0;}
+document.querySelector('.tap.l').addEventListener('click',()=>show(idx-1));
+document.querySelector('.tap.r').addEventListener('click',()=>show(idx+1));
+player.addEventListener('pointerdown',()=>{held=false;holdTimer=setTimeout(()=>{held=true;setPaused(true);},260);});
+['pointerup','pointercancel','pointerleave'].forEach(ev=>player.addEventListener(ev,()=>{
+  clearTimeout(holdTimer);
+  if(held){held=false;setPaused(false);}
+}));
+let tx0=null;
+player.addEventListener('touchstart',e=>{tx0=e.touches[0].clientX;},{passive:true});
+player.addEventListener('touchend',e=>{
+  if(tx0==null)return;const dx=e.changedTouches[0].clientX-tx0;tx0=null;
+  if(Math.abs(dx)>48)show(idx+(dx<0?1:-1));
+},{passive:true});
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight')show(idx+1);
+  if(e.key==='ArrowLeft')show(idx-1);
+  if(e.key===' '){e.preventDefault();setPaused(playing);}
+});
+show(0);requestAnimationFrame(loop);
+</script>
+</body>
+</html>
